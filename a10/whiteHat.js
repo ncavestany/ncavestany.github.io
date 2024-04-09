@@ -1,15 +1,3 @@
-// Set up the dimensions/margins of the chart
-const margin = {
-    top: 100,
-    right: 100,
-    bottom: 100,
-    left: 100,
-};
-const width =
-    window.innerWidth - margin.left - margin.right;
-const height =
-    window.innerHeight - margin.top - margin.bottom;
-
 // Create the SVG container for the chart
 const svg = d3
     .select('#white-hat')
@@ -56,7 +44,7 @@ d3.csv(
         .tickSize(0)
         .tickFormat((d) => d.toString().replace(/\,/g, '')); // Remove commas
 
-    const yAxis = d3.axisLeft(y).ticks(10).tickSize(0);
+    const yAxis = d3.axisLeft(y).ticks(10);
 
     svg
         .append('g')
@@ -65,7 +53,19 @@ d3.csv(
         .attr('transform', 'translate(0,' + height + ')')
         .call(xAxis);
 
-    svg.append('g').attr('class', 'y axis').call(yAxis);
+    svg
+        .append('g')
+        .attr('class', 'y axis')
+        .call(yAxis);
+
+    svg.append('text')
+        .attr('class', 'y axis-title')
+        .attr('transform', 'rotate(-90)')
+        .attr('x', -height / 2)
+        .attr('y', (-margin.left / 2) - 20)
+        .attr('dy', '1em')
+        .style('text-anchor', 'middle')
+        .text('Total Deaths');
 
     const thresholdScale = d3
         .scaleThreshold(d3.interpolateReds)
@@ -122,7 +122,7 @@ d3.csv(
             return colorScale(d.Prescription_Deaths);
         })
         .append('title')
-        .text((d) => d['Number.Opioid.Prescription']);
+        .text((d) => 'Prescription deaths: ' + d['Number.Opioid.Prescription'] + '\n' + 'Total opioid-related deaths: ' + d['Number.Opioid.Any']);
 
     // chart title
     svg
@@ -132,4 +132,12 @@ d3.csv(
         .attr('text-anchor', 'middle')
         .style('font-size', '25px')
         .text('Total Drug Related Deaths in America from 1999 to 2019');
+    
+    svg
+        .append('text')
+        .attr('x', width / 2)
+        .attr('y', -margin.top / 2 + 30)
+        .attr('text-anchor', 'middle')
+        .style('font-size', '20px')
+        .text('Collected by the National Institute on Drug Abuse');
 });
