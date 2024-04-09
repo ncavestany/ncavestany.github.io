@@ -1,17 +1,6 @@
-// Set up the dimensions/margins of the chart
-const margin = {
-    top: 100,
-    right: 100,
-    bottom: 100,
-    left: 100,
-};
-const width =
-    window.innerWidth - margin.left - margin.right;
-const height =
-    window.innerHeight - margin.top - margin.bottom;
 
 // Create the SVG container for the chart
-const svg = d3
+const blackHatsvg = d3
     .select('#black-hat')
     .append('svg')
     .attr('width', width + margin.left + margin.right)
@@ -19,7 +8,7 @@ const svg = d3
     .append('g')
     .attr(
         'transform',
-        'translate(' + margin.left + ',' + margin.top + ')',
+        'translate(' + margin.left + ',' + (margin.top) + ')',
     );
 
 // Load and process the data
@@ -58,14 +47,15 @@ d3.csv(
 
     const yAxis = d3.axisLeft(y).ticks(10).tickSize(0);
 
-    svg
+
+    blackHatsvg
         .append('g')
         .attr('class', 'x axis')
         .style('font-size', '10px')
         .attr('transform', 'translate(0,' + height + ')')
         .call(xAxis);
 
-    svg.append('g').attr('class', 'y axis').call(yAxis);
+        blackHatsvg.append('g').attr('class', 'y axis').call(yAxis);
 
     const thresholdScale = d3
         .scaleThreshold(d3.interpolateReds)
@@ -78,7 +68,7 @@ d3.csv(
             })
         );
 
-    svg
+        blackHatsvg
         .append('g')
         .attr('class', 'legendSequential')
         .attr('transform', 'translate(100,-10)');
@@ -90,7 +80,7 @@ d3.csv(
         .title("Prescription Related Deaths")
         .scale(thresholdScale);
 
-    svg.select('.legendSequential').call(legendSequential);
+        blackHatsvg.select('.legendSequential').call(legendSequential);
 
     var colorScale = d3
         .scaleSequential(d3.interpolateReds)
@@ -102,7 +92,7 @@ d3.csv(
         ]);
 
 
-    svg
+    blackHatsvg
         .selectAll('.bar')
         .data(data)
         .enter()
@@ -125,7 +115,7 @@ d3.csv(
         .text((d) => d['Number.Opioid.Prescription']);
 
     // chart title
-    svg
+    blackHatsvg
         .append('text')
         .attr('x', width / 2)
         .attr('y', -margin.top / 2)
