@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A10 Part 2</title>
+    
+    <style>
+    </style>
+</head>
+<body>
+    <div id="sketch"></div>
+    <p> This heatmap, while understandable, is lacking a proper legend and the colors are hard to tell apart.</p>
+    <p> The legend doesn't provide any actual numbers and only communicates that lower rates are darker and vice versa.</p>
+    <p> It also lacks tooltips so the user can't see proper values, and the overall styling is uneven.</p>
+    <div id="new-heatmap"></div>
+    <p> The new heatmap made in D3 is properly scaled, has a clearly defined color scale that is more distinct, and the data is properly sourced and titled.</p>
+    <p> The legend is correctly and clearly divided, so the viewer can tell what numbers are in what range.</p>
+    <p> There are also tooltips on each of the squares to display the values and states for each.</p>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.2/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
+
+    <script src="newHeatmap.js"></script>
+    <script src="sketch.js"></script>
+</body>
+</html>
