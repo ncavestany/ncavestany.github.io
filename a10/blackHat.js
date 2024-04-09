@@ -12,7 +12,7 @@ const height =
 
 // Create the SVG container for the chart
 const svg = d3
-    .select('#white-hat')
+    .select('#black-hat')
     .append('svg')
     .attr('width', width + margin.left + margin.right)
     .attr('height', height + margin.top + margin.bottom)
