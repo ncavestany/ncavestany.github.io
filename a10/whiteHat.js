@@ -46,12 +46,7 @@ d3.csv(
 
     const yAxis = d3.axisLeft(y).ticks(10);
 
-    svg
-        .append('g')
-        .attr('class', 'x axis')
-        .style('font-size', '10px')
-        .attr('transform', 'translate(0,' + height + ')')
-        .call(xAxis);
+
 
     svg
         .append('g')
@@ -124,6 +119,12 @@ d3.csv(
         .append('title')
         .text((d) => 'Prescription deaths: ' + d['Number.Opioid.Prescription'] + '\n' + 'Total opioid-related deaths: ' + d['Number.Opioid.Any']);
 
+    svg
+        .append('g')
+        .attr('class', 'x axis')
+        .style('font-size', '10px')
+        .attr('transform', 'translate(0,' + height + ')')
+        .call(xAxis);
     // chart title
     svg
         .append('text')
@@ -132,7 +133,7 @@ d3.csv(
         .attr('text-anchor', 'middle')
         .style('font-size', '25px')
         .text('Total Drug Related Deaths in America from 1999 to 2019');
-    
+
     svg
         .append('text')
         .attr('x', width / 2)

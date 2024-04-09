@@ -43,18 +43,18 @@ function generateRandomColors(count) {
 // Fisher-Yates Shuffle from https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 function shuffle(array) {
     let currentIndex = array.length;
-  
+
     while (currentIndex != 0) {
-  
-      let randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-  
-      [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex], array[currentIndex]];
+
+        let randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex], array[currentIndex]];
     }
 
     return array;
-  }
+}
 
 // Load and process the data
 d3.csv(
@@ -80,7 +80,7 @@ d3.csv(
         .range([height, 0])
         .domain([
             3500,
-            50000,
+            80000,
         ]);
 
     // Create the x and y axes
@@ -95,7 +95,7 @@ d3.csv(
     blackHatsvg
         .append('g')
         .attr('class', 'x axis')
-        .style('font-size', '25px')
+        .style('font-size', '30px')
         .attr('transform', 'translate(0,' + height + ')')
         .call(xAxis);
 
@@ -131,7 +131,7 @@ d3.csv(
         })
         .append('title')
         .text((d) => d['Number.Opioid.Prescription']);
-    
+
     var sequentialScale = d3
         .scaleOrdinal()
         .domain(ruinedYearsArray)
@@ -156,6 +156,9 @@ d3.csv(
         .attr('x', width / 2)
         .attr('y', -margin.top / 2)
         .attr('text-anchor', 'middle')
-        .style('font-size', '25px')
+        .style('font-family', 'Comic Sans MS') // Change font-family to Comic Sans
+        .style('font-size', '30px')
+        .style('fill', 'red') // Change fill color to red
         .text('The DEADLINESS Of Prescription Drugs');
+
 });
